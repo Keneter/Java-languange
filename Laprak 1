@@ -1,0 +1,128 @@
+package com.mycompany.laprak1;
+import java.util.Scanner;
+
+public class Laprak1 {
+
+    public static String nama = null;
+    public static String asal = null;
+    public static String merek = null;
+    public static int harga = 0;
+    public static boolean mobilDibuat = false;
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int pilihan;
+
+        do {
+            System.out.println("Menu CRUD Mobil");
+            System.out.println("1. Buat Mobil");
+            System.out.println("2. Update Mobil");
+            System.out.println("3. Lihat Mobil");
+            System.out.println("4. Hapus Mobil");
+            System.out.println("5. Keluar");
+            System.out.print("Masukkan pilihan anda : ");
+            pilihan = input.nextInt();
+            input.nextLine(); // Membersihkan buffer
+
+            switch (pilihan) {
+                case 1:
+                    tambahMobil(input);
+                    break;
+                case 2:
+                    updateMobil(input);
+                    break;
+                case 3:
+                    lihatMobil();
+                    break;
+                case 4:
+                    hapusMobil();
+                    break;
+                case 5:
+                    System.out.println("Program selesai. Terima kasih!");
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid.");
+            }
+        } while (pilihan != 5);
+
+    }
+
+    public static void tambahMobil(Scanner input) {
+        if (mobilDibuat) {
+            System.out.println("Tidak bisa membuat mobil baru! Mobil sudah ada!");
+            return;
+        }
+
+        System.out.print("Masukkan nama mobil yang baru : ");
+        nama = input.nextLine();
+        System.out.print("Masukkan asal mobil yang baru : ");
+        asal = input.nextLine();
+        System.out.print("Masukkan merek mobil yang baru : ");
+        merek = input.nextLine();
+        System.out.print("Masukkan harga mobil yang baru : ");
+        harga = input.nextInt();
+        input.nextLine(); // Membersihkan buffer
+
+        mobilDibuat = true;
+        System.out.println("Mobil berhasil ditambahkan!");
+    }
+
+    public static void updateMobil(Scanner input) {
+        if (!mobilDibuat) {
+            System.out.println("Mobil belum dibuat, Silahkan buat mobil terlebih dahulu!");
+            return;
+        }
+
+        String namaLama = nama;
+        String asalLama = asal;
+        String merekLama = merek;
+        int hargaLama = harga;
+
+        System.out.print("Masukkan nama mobil baru: ");
+        nama = input.nextLine();
+        System.out.print("Masukkan asal mobil baru: ");
+        asal = input.nextLine();
+        System.out.print("Masukkan merek mobil baru: ");
+        merek = input.nextLine();
+        System.out.print("Masukkan harga mobil baru: ");
+        harga = input.nextInt();
+        input.nextLine(); 
+        
+        System.out.println("Mobil sebelum di update:");
+        System.out.println("Nama: " + namaLama);
+        System.out.println("Asal: " + asalLama);
+        System.out.println("Merek: " + merekLama);
+        System.out.println("Harga: " + hargaLama);
+
+        
+        System.out.println("Mobil setelah di update:");
+        lihatMobil();
+    }
+
+    public static void lihatMobil() {
+        if (!mobilDibuat) {
+            System.out.println("Mobil belum dibuat, Silahkan buat mobil terlebih dahulu!");
+            return;
+        }
+        
+        System.out.println("Nama: " + nama);
+        System.out.println("Asal: " + asal);
+        System.out.println("Merek: " + merek);
+        System.out.println("Harga: " + harga);
+    }
+
+    public static void hapusMobil() {
+        if (!mobilDibuat) {
+            System.out.println("Mobil belum dibuat, Silahkan buat mobil terlebih dahulu!");
+            return;
+        }
+
+        nama = null;
+        asal = null;
+        merek = null;
+        harga = 0;
+        mobilDibuat = false;
+
+        System.out.println("Mobil berhasil dihapus.");
+    }
+}
