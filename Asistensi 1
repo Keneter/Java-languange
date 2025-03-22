@@ -1,0 +1,354 @@
+//package asistensi;
+//import java.util.Scanner;
+//import java.util.ArrayList;
+//
+//class Data {
+//    private String nama;
+//    private String tanggalLahir;
+//    
+//    public Data(String nama, String tanggalLahir) {
+//        this.nama = nama;
+//        this.tanggalLahir = tanggalLahir;
+//    }
+//    
+//    public String getNama() {
+//        return nama;
+//    }
+//    
+//    public String getTanggalLahir() {
+//        return tanggalLahir;
+//    }
+//}
+//
+//public class Asistensi {
+//    public static void main(String[] args) {
+//        Scanner input = new Scanner(System.in);
+//        ArrayList<Data> dataList = new ArrayList<>();
+//        String jawab;
+//        
+//        do {
+//            System.out.println("\nMenu Utama");
+//            System.out.println("1. Input Data");
+//            System.out.println("2. Tampilkan Data");
+//            System.out.print("Pilih menu (1/2): ");
+//            int pilihan = input.nextInt();
+//            input.nextLine(); 
+//            
+//            switch(pilihan) {
+//                case 1:
+//                    System.out.print("\nMasukkan nama: ");
+//                    String nama = input.nextLine();
+//                    
+//                    
+//                    System.out.print("Masukkan tanggal lahir : ");
+//                    String tglLahir = input.nextLine();
+//                    input.nextLine(); // Membersihkan newline
+//                    
+//                    dataList.add(new Data(nama, tglLahir));
+//                    System.out.println("Data berhasil ditambahkan!");
+//                    break;
+//                    
+//                case 2:
+//                    System.out.println("\nDaftar Data:");
+//                    if(dataList.isEmpty()) {
+//                        System.out.println("Belum ada data yang tersimpan");
+//                    } else {
+//                        for(int i = 0; i < dataList.size(); i++) {
+//                            Data data = dataList.get(i);
+//                            System.out.println((i+1) + ". Nama: " + data.getNama() + 
+//                                " - Tanggal Lahir: " + data.getTanggalLahir());
+//                        }
+//                    }
+//                    break;
+//                    
+//                default:
+//                    System.out.println("Pilihan tidak valid!");
+//            }
+//            
+//            System.out.print("\nKembali ke menu? (y/n): ");
+//            jawab = input.nextLine();
+//            
+//        } while(jawab.equals("y") || jawab.equals("Y"));
+//        
+//        System.out.println("\nProgram selesai. Terima kasih!");
+//        input.close();
+//    }
+//}
+
+
+
+
+
+//package asistensi;
+//import java.util.Scanner;
+//import java.util.ArrayList;
+//
+//class Data {
+//    private String nama;
+//    private String tanggalLahir;
+//    
+//    // Method setter
+//    public void setNama(String nama) {
+//        this.nama = nama;
+//    }
+//    
+//    public void setTanggalLahir(String tanggalLahir) {
+//        this.tanggalLahir = tanggalLahir;
+//    }
+//    
+//    // Method getter
+//    public String getNama() {
+//        return nama;
+//    }
+//    
+//    public String getTanggalLahir() {
+//        return tanggalLahir;
+//    }
+//}
+//
+//public class Asistensi {
+//    private static void inputData(ArrayList<Data> dataList, Scanner input) {
+//        System.out.print("\nMasukkan nama: ");
+//        String nama = input.nextLine();
+//        
+//        System.out.print("Masukkan tanggal lahir: ");
+//        String tglLahir = input.nextLine();
+//        
+//        Data dataBaru = new Data();
+//        dataBaru.setNama(nama);
+//        dataBaru.setTanggalLahir(tglLahir);
+//        dataList.add(dataBaru);
+//        
+//        System.out.println("Data berhasil ditambahkan!");
+//    }
+//    
+//    private static void tampilkanData(ArrayList<Data> dataList) {
+//        System.out.println("\nDaftar Data:");
+//        if(dataList.isEmpty()) {
+//            System.out.println("Belum ada data yang tersimpan");
+//        } else {
+//            for(int i = 0; i < dataList.size(); i++) {
+//                Data data = dataList.get(i);
+//                System.out.println((i+1) + ". " + data.getNama() + 
+//                    " - Lahir: " + data.getTanggalLahir());
+//            }
+//        }
+//    }
+//    
+//    public static void main(String[] args) {
+//        Scanner input = new Scanner(System.in);
+//        ArrayList<Data> dataList = new ArrayList<>();
+//        String jawab;
+//        
+//        do {
+//            System.out.println("\nMenu Utama");
+//            System.out.println("1. Input Data");
+//            System.out.println("2. Tampilkan Data");
+//            System.out.print("Pilih menu (1/2): ");
+//            int pilihan = input.nextInt();
+//            input.nextLine(); // Membersihkan buffer
+//            
+//            switch(pilihan) {
+//                case 1:
+//                    inputData(dataList, input);
+//                    break;
+//                    
+//                case 2:
+//                    tampilkanData(dataList);
+//                    break;
+//                    
+//                default:
+//                    System.out.println("Pilihan tidak valid!");
+//            }
+//            
+//            System.out.print("\nKembali ke menu? (y/n): ");
+//            jawab = input.nextLine().toLowerCase();
+//            
+//        } while(jawab.equals("y"));
+//        
+//        System.out.println("\nProgram selesai. Terima kasih!");
+//        input.close();
+//    }
+//}
+
+
+
+
+
+package asistensi;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+class Data {
+    private String nama;
+    private String tanggalLahir;
+    
+    // Setter methods
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+    
+    public void setTanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+    }
+    
+    // Getter methods
+    public String getNama() {
+        return nama;
+    }
+    
+    public String getTanggalLahir() {
+        return tanggalLahir;
+    }
+}
+
+public class Asistensi {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        ArrayList<Data> dataList = new ArrayList<>();
+        String jawab;
+        
+        do {
+            System.out.println("\nMenu Utama");
+            System.out.println("1. Input Data");
+            System.out.println("2. Tampilkan Data");
+            System.out.print("Pilih menu (1/2): ");
+            int pilihan = input.nextInt();
+            input.nextLine(); // Membersihkan buffer
+            
+            switch(pilihan) {
+                case 1: // Logika input data langsung di case 1
+                    System.out.print("\nMasukkan nama: ");
+                    String nama = input.nextLine();
+                    
+                    System.out.print("Masukkan tanggal lahir: ");
+                    String tglLahir = input.nextLine();
+                    
+                    // Membuat objek dan mengisi data
+                    Data dataBaru = new Data();
+                    dataBaru.setNama(nama);
+                    dataBaru.setTanggalLahir(tglLahir);
+                    
+                    dataList.add(dataBaru);
+                    System.out.println("Data berhasil ditambahkan!");
+                    break;
+                    
+                case 2: // Logika tampilkan data langsung di case 2
+                    System.out.println("\nDaftar Data:");
+                    if(dataList.isEmpty()) {
+                        System.out.println("Belum ada data yang tersimpan");
+                    } else {
+                        for(int i = 0; i < dataList.size(); i++) {
+                            Data data = dataList.get(i);
+                            System.out.println((i+1) + ". " + data.getNama() + 
+                                " - Lahir: " + data.getTanggalLahir());
+                        }
+                    }
+                    break;
+                    
+                default:
+                    System.out.println("Pilihan tidak valid!");
+            }
+            
+            System.out.print("\nKembali ke menu? (y/n): ");
+            jawab = input.nextLine().toLowerCase();
+            
+        } while(jawab.equals("y"));
+        
+        System.out.println("\nProgram selesai. Terima kasih!");
+        input.close();
+    }
+}
+
+
+
+
+
+
+//PENGGUNAAN ARRAY BIASA TANPA ARRAY LIST
+package asistensi;
+import java.util.Scanner;
+
+class Data {
+    private String nama;
+    private String tanggalLahir;
+    
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+    
+    public void setTanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+    }
+    
+    public String getNama() {
+        return nama;
+    }
+    
+    public String getTanggalLahir() {
+        return tanggalLahir;
+    }
+}
+
+public class Asistensi {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Data[] dataArray = new Data[100]; // Array biasa dengan maksimal 100 data
+        int jumlahData = 0; // Penghitung jumlah data yang tersimpan
+        String jawab;
+        
+        do {
+            System.out.println("\nMenu Utama");
+            System.out.println("1. Input Data");
+            System.out.println("2. Tampilkan Data");
+            System.out.print("Pilih menu (1/2): ");
+            int pilihan = input.nextInt();
+            input.nextLine(); // Membersihkan buffer
+            
+            switch(pilihan) {
+                case 1:
+                    if(jumlahData < dataArray.length) {
+                        System.out.print("\nMasukkan nama: ");
+                        String nama = input.nextLine();
+                        
+                        System.out.print("Masukkan tanggal lahir: ");
+                        String tglLahir = input.nextLine();
+                        
+                        Data dataBaru = new Data();
+                        dataBaru.setNama(nama);
+                        dataBaru.setTanggalLahir(tglLahir);
+                        
+                        dataArray[jumlahData] = dataBaru;
+                        jumlahData++;
+                        System.out.println("Data berhasil ditambahkan!");
+                    } else {
+                        System.out.println("Penyimpanan penuh! Tidak bisa menambah data baru.");
+                    }
+                    break;
+                    
+                case 2:
+                    System.out.println("\nDaftar Data:");
+                    if(jumlahData == 0) {
+                        System.out.println("Belum ada data yang tersimpan");
+                    } else {
+                        for(int i = 0; i < jumlahData; i++) {
+                            Data data = dataArray[i];
+                            System.out.println((i+1) + ". " + data.getNama() + 
+                                " - Lahir: " + data.getTanggalLahir());
+                        }
+                    }
+                    break;
+                    
+                default:
+                    System.out.println("Pilihan tidak valid!");
+            }
+            
+            System.out.print("\nKembali ke menu? (y/n): ");
+            jawab = input.nextLine().toLowerCase();
+            
+        } while(jawab.equals("y"));
+        
+        System.out.println("\nProgram selesai. Terima kasih!");
+        input.close();
+    }
+}
