@@ -1,0 +1,147 @@
+
+package tugas.pkg1_muh.alif.faturahman_13020230039;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Tugas1_MuhAlifFaturahman_13020230039 {    
+    public static ArrayList<Item> items = new ArrayList<>();
+    public static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int pilihan;
+        do {
+            tampilkanMenu();
+            pilihan = input.nextInt();
+            input.nextLine(); 
+
+            switch(pilihan) {
+                case 1:
+                    tambahBuku();
+                    break;
+                case 2:
+                    tambahDVD();
+                    break;
+                case 3:
+                    tampilkanSemuaItem();
+                    break;
+                case 4:
+                    pinjamItem();
+                    break;
+                case 5:
+                    kembalikanItem();
+                    break;
+                case 6:
+                    RingkasanItem();
+                    break;
+                case 7:
+                    System.out.println("Keluar program...");
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid!");
+            }
+        } while(pilihan != 7);
+    }
+
+    public static void tampilkanMenu() {
+        System.out.println("\n===== Sistem Manajemen Peminjaman =====");
+        System.out.println("1. Tambah Buku");
+        System.out.println("2. Tambah DVD");
+        System.out.println("3. Tampilkan Semua Item");
+        System.out.println("4. Pinjam Item");
+        System.out.println("5. Kembalikan Item");
+        System.out.println("6. Ringkasan Item");
+        System.out.println("7. Keluar");
+        System.out.print("Masukkan Pilihan Anda [1-7]: ");
+    }
+
+    public static void tambahBuku() {
+        System.out.println("\n--- Tambah Buku Baru ---");
+        System.out.print("ID Buku: ");
+        String id = input.nextLine();
+        System.out.print("Judul: ");
+        String judul = input.nextLine();
+        System.out.print("Tahun Terbit: ");
+        int tahun = input.nextInt();
+        input.nextLine();
+        System.out.print("Penulis: ");
+        String penulis = input.nextLine();
+        System.out.print("Jumlah Halaman: ");
+        int halaman = input.nextInt();
+        input.nextLine();
+        System.out.print("Genre: ");
+        String genre = input.nextLine();
+
+        items.add(new Buku(id, judul, tahun, penulis, halaman, genre));
+        System.out.println("Buku berhasil ditambahkan!");
+    }
+
+    public static void tambahDVD() {
+        System.out.println("\n--- Tambah DVD Baru ---");
+        System.out.print("ID DVD: ");
+        String id = input.nextLine();
+        System.out.print("Judul: ");
+        String judul = input.nextLine();
+        System.out.print("Tahun Terbit: ");
+        int tahun = input.nextInt();
+        input.nextLine();
+        System.out.print("Durasi (menit): ");
+        int durasi = input.nextInt();
+        input.nextLine();
+        System.out.print("Sutradara: ");
+        String sutradara = input.nextLine();
+        System.out.print("Rating: ");
+        String rating = input.nextLine();
+
+        items.add(new DVD(id, judul, tahun, durasi, sutradara, rating));
+        System.out.println("DVD berhasil ditambahkan!");
+    }
+
+    public static void tampilkanSemuaItem() {
+        System.out.println("\n--- Daftar Semua Item ---");
+        for(Item item : items) {
+            item.displayInfo();
+            System.out.println("-----------------------------");
+        }
+    }
+
+    public static void pinjamItem() {
+        System.out.print("\nMasukkan ID item yang ingin dipinjam: ");
+        String id = input.nextLine();
+        for(Item item : items) {
+            if(item.getId().equals(id)) {
+                item.pinjam();
+                return;
+            }
+        }
+        System.out.println("Item tidak ditemukan!");
+    }
+
+    public static void kembalikanItem() {
+        System.out.print("\nMasukkan ID item yang ingin dikembalikan: ");
+        String id = input.nextLine();
+        for(Item item : items) {
+            if(item.getId().equals(id)) {
+                item.kembalikan();
+                return;
+            }
+        }
+        System.out.println("Item tidak ditemukan!");
+    }
+
+    public static void RingkasanItem() {
+        System.out.print("\nMasukkan ID item: ");
+        String id = input.nextLine();
+        for(Item item : items) {
+            if(item.getId().equals(id)) {
+                if(item instanceof Buku) {
+                    ((Buku) item).bacaRingkasan();
+                } else if(item instanceof DVD) {
+                    ((DVD) item).putar();
+                }
+                return;
+            }
+        }
+        System.out.println("Item tidak ditemukan!");
+    }    
+    
+}
