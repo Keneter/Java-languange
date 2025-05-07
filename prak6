@@ -1,0 +1,135 @@
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
+
+public class BookService extends javax.swing.JFrame {
+
+    private String menu = "";
+    private ArrayList<String> bookName = new ArrayList<>();
+    private ArrayList<String> authorName = new ArrayList<>();
+
+    public BookService() {
+        initComponents();
+        changeAllVisible(false);
+        panelOutput.setVisible(false);
+    }
+
+    private void changeAllVisible(boolean value) {
+        fieldBookName.setVisible(value);
+        fieldAuthorName.setVisible(value);
+        fieldId.setVisible(false);
+        btnSet.setVisible(value);
+    }
+
+    private void changeAllVisibleUpdate(boolean value) {
+        fieldBookName.setVisible(value);
+        fieldAuthorName.setVisible(value);
+        fieldId.setVisible(value);
+        btnSet.setVisible(value);
+    }
+
+    private void changeBookNameVisible(boolean value) {
+        changeAllVisible(false);
+        fieldBookName.setVisible(value);
+        btnSet.setVisible(value);
+    }
+
+    void addBook() {
+        bookName.add(fieldBookName.getText());
+        authorName.add(fieldAuthorName.getText());
+    }
+
+    void findListBookById(int i) {
+        DefaultListModel<String> model = new DefaultListModel<>();
+        String outputText = "";
+        if (i > 0 && i <= bookName.size()) {
+            outputText += i + ". ";
+            outputText += "Nama Buku: " + bookName.get(i - 1) + ", ";
+            outputText += "Nama Author: " + authorName.get(i - 1);
+            model.addElement(outputText);
+        } else {
+            model.addElement("Buku tidak ditemukan!");
+        }
+        listOutput.setModel(model);
+    }
+
+    void deleteBook(int i) {
+        if (i > 0 && i <= bookName.size()) {
+            bookName.remove(i - 1);
+            authorName.remove(i - 1);
+        }
+    }
+
+    void updateBook() {
+        int id = Integer.parseInt(fieldId.getText()) - 1;
+        if (id >= 0 && id < bookName.size()) {
+            bookName.set(id, fieldBookName.getText());
+            authorName.set(id, fieldAuthorName.getText());
+        }
+    }
+
+    void findListBook() {
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for (int i = 0; i < bookName.size(); i++) {
+            model.addElement((i + 1) + ". Nama Buku: " + bookName.get(i) + ", Nama Author: " + authorName.get(i));
+        }
+        listOutput.setModel(model);
+    }
+
+    void changeMenu(String menu) {
+        this.menu = menu;
+    }
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
+        fieldBookName.setText("");
+        fieldAuthorName.setText("");
+        changeBookNameVisible(false);
+        changeAllVisible(true);
+        changeMenu("add");
+    }
+
+    private void btnFindBookActionPerformed(java.awt.event.ActionEvent evt) {
+        findListBook();
+        changeAllVisible(false);
+        panelOutput.setVisible(true);
+    }
+
+    private void btnFindByIdActionPerformed(java.awt.event.ActionEvent evt) {
+        fieldBookName.setText("");
+        changeBookNameVisible(true);
+        changeMenu("findById");
+    }
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {
+        fieldBookName.setText("");
+        fieldAuthorName.setText("");
+        fieldId.setText("");
+        changeAllVisible(false);
+        changeAllVisibleUpdate(true);
+        changeMenu("update");
+    }
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
+        fieldBookName.setText("");
+        changeAllVisible(false);
+        changeBookNameVisible(true);
+        changeMenu("delete");
+    }
+
+    private void btnSetActionPerformed(java.awt.event.ActionEvent evt) {
+        switch (menu) {
+            case "add":
+                addBook();
+                break;
+            case "delete":
+                deleteBook(Integer.parseInt(fieldBookName.getText()));
+                break;
+            case "update":
+                updateBook();
+                break;
+            case "findById":
+                findListBookById(Integer.parseInt(fieldBookName.getText()));
+                break;
+        }
+    }
